@@ -148,3 +148,11 @@ The key and value of the environment variable using the `--key` and `--value` op
 xctestplanner environment-variables -f path/to/test/plan.xctestplan --key MY_VAR --value 123
 ```
 
+
+## Contribution
+
+Please create an issue whenever you find an issue or think a feature could be a good addition to XCTestPlanner. 
+
+## License
+
+XCTestPlanner is [available under the Apache License 2.0](https://github.com/atakankarsli/xctestplanner/blob/main/LICENSE).
