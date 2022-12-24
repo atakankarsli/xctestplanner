@@ -121,17 +121,17 @@ xctestplanner select -f path/to/testplan.xctestplan -t TestClass1 TestClass2 -o 
 You can adjust these without adding/removing tests with the these commands, you will need to provide --rerun option.
 
 ```
-xctestplanner rerun -f path/to/test/plan.xctestplan --rerun 3
+xctestplanner rerun -f path/to/test/plan.xctestplan -r 3
 ```
 
 ### Language
 ```
-xctestplanner language -f path/to/test/plan.xctestplan --language en
+xctestplanner language -f path/to/test/plan.xctestplan -l en
 ```
 
 ### Region
 ```
-xctestplanner region -f path/to/test/plan.xctestplan --region EN
+xctestplanner region -f path/to/test/plan.xctestplan -r EN
 ```
 
 ### Argument
