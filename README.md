@@ -61,7 +61,7 @@ After these step you'll have example.xctestplan look like this:
         ],
         "environmentVariableEntries": [
             {
-                "key": “VAR_KEY_1”,
+                "key": "VAR_KEY_1",
                 "value": "$(VAR_VALUE_1)"
             }
         ],
