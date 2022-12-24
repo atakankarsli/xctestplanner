@@ -118,7 +118,7 @@ xctestplanner select -f path/to/testplan.xctestplan -t TestClass1 TestClass2 -o 
 ```
 
 ### Rerun
-To use the rerun command, you will need to provide --rerun option.
+You can adjust test repetitions without adding/removing tests with the rerun command, you will need to provide --rerun option.
 
 ```
 xctestplanner rerun -f path/to/test/plan.xctestplan --rerun 3
