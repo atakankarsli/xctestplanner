@@ -12,7 +12,7 @@ extension Command {
     struct Select: ParsableCommand {
         static var configuration = CommandConfiguration(
             commandName: "select",
-            abstract: "Adds the specified tests to the list of selected tests in the test plan. Use '-o' to override."
+            abstract: "Adds the specified tests to the list of selected tests. Use '-o' to override."
         )
         
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")
@@ -24,10 +24,10 @@ extension Command {
         @Flag(name: .shortAndLong, help: "If provided, the selected tests will be replaced with the specified tests.")
         var override = false
         
-        @Option(name: .long, help: "The language to set in the test plan. (examples: 'en', 'tr')")
+        @Option(name: .long, help: "The language to update. (examples: 'en', 'tr')")
         var language: String?
         
-        @Option(name: .long, help: "The region to set in the test plan. (examples: 'EN', 'TR')")
+        @Option(name: .long, help: "The region to update. (examples: 'EN', 'TR')")
         var region: String?
         
         @Option(name: .long, help: "The maximum number of test repetitions.")

@@ -12,13 +12,13 @@ extension Command {
     struct Region: ParsableCommand {
         static var configuration = CommandConfiguration(
             commandName: "region",
-            abstract: "Updates the region in the test plan."
+            abstract: "Updates the region."
         )
         
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")
         var filePath: String
         
-        @Option(name: .shortAndLong, help: "The region to set in the test plan. (examples: 'EN', 'TR')")
+        @Option(name: .shortAndLong, help: "The region to update. (examples: 'EN', 'TR')")
         var region: String
         
         func run() throws {

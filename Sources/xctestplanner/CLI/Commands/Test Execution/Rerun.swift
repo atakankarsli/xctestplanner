@@ -12,7 +12,7 @@ extension Command {
     struct Rerun: ParsableCommand {
         static var configuration = CommandConfiguration(
             commandName: "rerun",
-            abstract: "Updates the maximum number of test repetitions in the test plan."
+            abstract: "Updates the maximum number of test repetitions."
         )
         
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")

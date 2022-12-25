@@ -12,7 +12,7 @@ extension Command {
     struct EnvironmentVariable: ParsableCommand {
         static var configuration = CommandConfiguration(
             commandName: "environment",
-            abstract: "Sets the environment variable in the test plan."
+            abstract: "Sets the environment variable."
         )
         
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")
