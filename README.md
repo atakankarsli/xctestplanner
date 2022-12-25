@@ -3,7 +3,7 @@ A tool for managing [Xcode Test Plans](https://medium.com/trendyol-tech/get-the-
 
 ## Why?
 Test plans are a valuable tool for organizing and managing your tests in Xcode projects. \
-However, manually editing large number of test plans can be time-consuming and tedious (sometimes crashy). \
+However, manually editing large number of test plans can be time-consuming and tedious (sometimes crashy).
 
 And also, It's not possible to selectively run or skip specific test classes with a test plan.
 
