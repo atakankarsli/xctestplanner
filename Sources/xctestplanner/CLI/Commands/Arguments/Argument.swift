@@ -12,16 +12,16 @@ extension Command {
     struct Argument: ParsableCommand {
         static var configuration = CommandConfiguration(
             commandName: "argument",
-            abstract: "Sets the specified command line argument in the test plan. Use '-d' to disable"
+            abstract: "Sets the specified command line argument. Use '-d' to disable"
         )
         
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")
         var filePath: String
         
-        @Option(name: .shortAndLong, help: "The key of the command line argument to set in the test plan.")
+        @Option(name: .shortAndLong, help: "The key of the command line argument to set.")
         var key: String
         
-        @Flag(name: .short, help: "Disables the specified command line argument in the test plan.")
+        @Flag(name: .short, help: "Disables the specified command line argument.")
         var disabled = false
         
         func run() throws {
