@@ -145,7 +145,7 @@ xctestplanner argument -f path/to/test/plan.xctestplan --key DEV_CONFIG --disabl
 The key and value of the environment variable using the `--key` and `--value` options, respectively.
 
 ```
-xctestplanner environment-variables -f path/to/test/plan.xctestplan --key MY_VAR --value 123
+xctestplanner environment -f path/to/test/plan.xctestplan --key MY_VAR --value 123
 ```
 
 
