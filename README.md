@@ -23,6 +23,7 @@ XCTestPlanner simplifies to edit test plans by providing command-line interface 
 ```
 brew install mint
 mint install atakankarsli/xctestplanner
+cp -f /Users/user.name/.mint/bin/xctestplanner /usr/local/bin/xctestplanner
 ```
 or clone the repo and run `swift build --configuration release` command. You will find xctestplanner executable in `.build/release` directory
 You need to copy it copy it to the /usr/local/bin directory, allowing you to run without the need to specify swift run."
