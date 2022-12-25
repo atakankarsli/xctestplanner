@@ -108,44 +108,44 @@ xctestplanner skip -f path/to/testplan.xctestplan -t TestClass1 TestClass2
 By default, the select/skip commands will add the specified tests to the existing list of selected/skipped tests. \
 If you want to selectively run or skip only specified test classes use `--override` or the `-o` flag:
 ```
-xctestplanner select -f path/to/testplan.xctestplan -t TestClass1 TestClass2 -o
+xctestplanner select -f filePath -t TestClass1 TestClass2 -o
 ```
 
 And you can set the language, region and adjust rerun count with using the `--language` and `--region`, `--rerun` flags:
 
 ```
-xctestplanner select -f path/to/testplan.xctestplan -t TestClass1 TestClass2 -o --language en --region US --rerun 3
+xctestplanner select -f filePath -t TestClass1 TestClass2 -o --language en --region US --rerun 3
 ```
 
 ### Rerun
 You can adjust these without adding/removing tests with the these commands, you will need to provide --rerun option.
 
 ```
-xctestplanner rerun -f path/to/test/plan.xctestplan -r 3
+xctestplanner rerun -f filePath -r 3
 ```
 
 ### Language
 ```
-xctestplanner language -f path/to/test/plan.xctestplan -l en
+xctestplanner language -f filePath -l en
 ```
 
 ### Region
 ```
-xctestplanner region -f path/to/test/plan.xctestplan -r EN
+xctestplanner region -f filePath -r EN
 ```
 
 ### Argument
 The key of the command line argument to set using the --key option. If you want to disable the specified command line argument, use the `-d` or `--disabled` flag.
 
 ```
-xctestplanner argument -f path/to/test/plan.xctestplan --key DEV_CONFIG --disabled
+xctestplanner argument -f filePath --key DEV_CONFIG --disabled
 ```
 
 ### Environment Variable
 The key and value of the environment variable using the `--key` and `--value` options, respectively.
 
 ```
-xctestplanner environment -f path/to/test/plan.xctestplan --key MY_VAR --value 123
+xctestplanner environment -f filePath --key MY_VAR --value 123
 ```
 
 
