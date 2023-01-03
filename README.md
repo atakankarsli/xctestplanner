@@ -3,7 +3,7 @@ A tool for managing [Xcode Test Plans](https://medium.com/trendyol-tech/get-the-
 
 ## Why?
 Test plans are a valuable tool for organizing and managing your tests in Xcode projects. \
-However, manually editing large number of test plans can be time-consuming and tedious (sometimes crashy). \
+However, manually editing large number of test plans can be time-consuming and tedious (sometimes crashy).
 
 And also, It's not possible to selectively run or skip specific test classes with a test plan.
 
@@ -23,8 +23,11 @@ XCTestPlanner simplifies to edit test plans by providing command-line interface 
 ```
 brew install mint
 mint install atakankarsli/xctestplanner
+cp -f /Users/user.name/.mint/bin/xctestplanner /usr/local/bin/xctestplanner
 ```
-or clone the repo and run `swift build --configuration release` command. You will find xctestplanner executable in `.build/release` directory
+### Clone 
+
+Clone the repo and run `swift build --configuration release` command. You will find xctestplanner executable in `.build/release` directory
 You need to copy it copy it to the /usr/local/bin directory, allowing you to run without the need to specify swift run."
 ```
 cp -f .build/release/xctestplanner /usr/local/bin/xctestplanner
