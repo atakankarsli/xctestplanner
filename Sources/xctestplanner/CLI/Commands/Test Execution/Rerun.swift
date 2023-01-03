@@ -15,11 +15,11 @@ extension Command {
             abstract: "Updates the maximum number of test repetitions."
         )
         
+        @Argument(help: "The maximum number of test repetitions.")
+        var rerun: Int
+        
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")
         var filePath: String
-        
-        @Option(name: .long, help: "The maximum number of test repetitions.")
-        var rerun: Int
         
         func run() throws {
             var testPlan = try TestPlanHelper.readTestPlan(filePath: filePath)

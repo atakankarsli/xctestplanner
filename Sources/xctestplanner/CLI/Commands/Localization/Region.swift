@@ -15,11 +15,11 @@ extension Command {
             abstract: "Updates the region."
         )
         
+        @Argument(help: "The region to update. (examples: 'EN', 'TR')")
+        var region: String
+        
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")
         var filePath: String
-        
-        @Option(name: .shortAndLong, help: "The region to update. (examples: 'EN', 'TR')")
-        var region: String
         
         func run() throws {
             var testPlan = try TestPlanHelper.readTestPlan(filePath: filePath)

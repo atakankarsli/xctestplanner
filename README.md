@@ -98,40 +98,40 @@ For all commands you need to provide the path to the JSON file containing the te
 To update the list of selected/skipped tests in a test plan, use the select command and pass the path to the test plan file and a list of test names:
 
 ```
-xctestplanner select -f path/to/testplan.xctestplan -t TestClass1 TestClass2
+xctestplanner select TestClass1 TestClass2 -f path/to/testplan.xctestplan
 ```
 Or
 ```
-xctestplanner skip -f path/to/testplan.xctestplan -t TestClass1 TestClass2
+xctestplanner skip TestClass1 TestClass2 -f path/to/testplan.xctestplan
 ```
 
 By default, the select/skip commands will add the specified tests to the existing list of selected/skipped tests. \
 If you want to selectively run or skip only specified test classes use `--override` or the `-o` flag:
 ```
-xctestplanner select -f filePath -t TestClass1 TestClass2 -o
+xctestplanner select TestClass1 TestClass2 -o -f filePath
 ```
 
 And you can set the language, region and adjust rerun count with using the `--language` and `--region`, `--rerun` flags:
 
 ```
-xctestplanner select -f filePath -t TestClass1 TestClass2 -o --language en --region US --rerun 3
+xctestplanner select TestClass1 TestClass2 -f filePath -o --language en --region US --rerun 3
 ```
 
 ### Rerun
 You can adjust these without adding/removing tests with the these commands, you will need to provide --rerun option.
 
 ```
-xctestplanner rerun -f filePath -r 3
+xctestplanner rerun 3 -f filePath
 ```
 
 ### Language
 ```
-xctestplanner language -f filePath -l en
+xctestplanner language en -f filePath
 ```
 
 ### Region
 ```
-xctestplanner region -f filePath -r EN
+xctestplanner region EN -f filePath
 ```
 
 ### Argument

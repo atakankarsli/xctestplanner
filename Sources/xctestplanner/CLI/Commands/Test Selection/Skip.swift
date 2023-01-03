@@ -15,11 +15,11 @@ extension Command {
             abstract: "Adds the specified tests to the list of skipped tests. Use '-o' to override."
         )
         
+        @Argument(help: "A list of tests to add to the skipped tests.")
+        var tests: [String]
+        
         @Option(name: .shortAndLong, help: "The path to the JSON file to parse.")
         var filePath: String
-        
-        @Option(name: .shortAndLong, help: "A list of tests to add to the skipped tests.")
-        var tests: [String]
         
         @Flag(name: .shortAndLong, help: "If provided, the skipped tests will be replaced with the specified tests.")
         var override = false

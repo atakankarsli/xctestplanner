@@ -23,7 +23,7 @@ extension Command {
             Command.Language.self,
             Command.Region.self,
             Command.EnvironmentVariable.self,
-            Command.Argument.self,
+            Command.Arg.self,
         ]
       )
     }

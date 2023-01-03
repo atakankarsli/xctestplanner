@@ -9,7 +9,7 @@ import ArgumentParser
 import Foundation
 
 extension Command {
-    struct Argument: ParsableCommand {
+    struct Arg: ParsableCommand {
         static var configuration = CommandConfiguration(
             commandName: "argument",
             abstract: "Sets the specified command line argument. Use '-d' to disable"
