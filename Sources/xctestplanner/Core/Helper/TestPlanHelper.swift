@@ -66,6 +66,16 @@ class TestPlanHelper {
         }
     }
     
+    static func removeTests(testPlan: inout TestPlanModel, with tests: [String]) {
+        checkForTestTargets(testPlan: testPlan)
+        for (index, _) in testPlan.testTargets.enumerated() {
+            Logger.log("Remove given tests from selected tests in test plan", level: .info)
+            for test in tests {
+                testPlan.testTargets[index].selectedTests?.remove(object: test)
+            }
+        }
+    }
+    
     static func updateRerunCount(testPlan: inout TestPlanModel, to count: Int) {
         Logger.log("Updating rerun count in test plan to: \(count)", level: .info)
         if testPlan.defaultOptions.testRepetitionMode == nil {

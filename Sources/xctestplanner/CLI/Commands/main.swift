@@ -24,6 +24,7 @@ extension Command {
             Command.Region.self,
             Command.EnvironmentVariable.self,
             Command.Arg.self,
+            Command.Remove.self
         ]
       )
     }
