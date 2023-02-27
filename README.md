@@ -151,6 +151,10 @@ The key and value of the environment variable using the `--key` and `--value` op
 xctestplanner environment -f filePath --key MY_VAR --value 123
 ```
 
+### Remove
+```
+xctestplanner remove -f filePath TestClass1\/testName1 TestClass2\/testName2
+```
 
 ## Contribution
 
