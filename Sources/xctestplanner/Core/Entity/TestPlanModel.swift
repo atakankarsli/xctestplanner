@@ -26,6 +26,7 @@ struct Target: Codable {
 
 // MARK: - DefaultOptions
 struct DefaultOptions: Codable {
+    var diagnosticCollectionPolicy: String?
     var commandLineArgumentEntries: [CommandLineArgumentEntry]?
     var environmentVariableEntries: [EnvironmentVariableEntry]?
     var language: String?
@@ -34,6 +35,24 @@ struct DefaultOptions: Codable {
     var testTimeoutsEnabled: Bool?
     var testRepetitionMode: String?
     var maximumTestRepetitions: Int?
+    var repeatInNewRunnerProcess: Bool?
+    var targetForVariableExpansion: Target?
+    var testExecutionOrdering: String?
+    var uiTestingScreenshotsLifetime: String?
+    var areLocalizationScreenshotsEnabled: Bool?
+    var userAttachmentLifetime: String?
+    var defaultTestExecutionTimeAllowance: Int?
+    var maximumTestExecutionTimeAllowance: Int?
+    var codeCoverage: [Target]?
+    var addressSanitizer: AddressSanitizer?
+    var threadSanitizerEnabled: Bool?
+    var undefinedBehaviorSanitizerEnabled: Bool?
+    var mainThreadCheckerEnabled: Bool?
+    var mallocScribbleEnabled: Bool?
+    var mallocGuardEdgesEnabled: Bool?
+    var guardMallocEnabled: Bool?
+    var nsZombieEnabled: Bool?
+    var mallocStackLoggingOptions: MallocStackLoggingOptions?
 }
 
 // MARK: - CommandLineArgumentEntry
@@ -58,4 +77,15 @@ struct TestTarget: Codable {
     var skippedTests: [String]?
     var selectedTests: [String]?
     var target: Target
+}
+
+// MARK: - AddressSanitizer
+struct AddressSanitizer: Codable {
+    var enabled: Bool?
+    var detectStackUseAfterReturn: Bool?
+}
+
+// MARK: - MallocStackLoggingOptions
+struct MallocStackLoggingOptions: Codable {
+    var loggingType: String
 }

@@ -25,7 +25,28 @@ extension Command {
             Command.EnvironmentVariable.self,
             Command.Arg.self,
             Command.Remove.self,
-            Command.DefaultTestPlan.self
+            Command.DefaultTestPlan.self,
+            Command.TargetForVariableExpansion.self,
+            Command.SimulatedLocation.self,
+            Command.UITestingScreenshotsLifetime.self,
+            Command.AreLocalizationScreenshotsEnabled.self,
+            Command.UserAttachmentLifetime.self,
+            Command.DiagnosticCollectionPolicy.self,
+            Command.TestExecutionOrdering.self,
+            Command.TestTimeoutsEnabled.self,
+            Command.DefaultTestExecutionTimeAllowance.self,
+            Command.MaximumTestExecutionTimeAllowance.self,
+            Command.RepeatInNewRunnerProcess.self,
+            Command.CodeCoverage.self,
+            Command.TestAddressSanitizer.self,
+            Command.ThreadSanitizerEnabled.self,
+            Command.UndefinedBehaviorSanitizerEnabled.self,
+            Command.MainThreadCheckerEnabled.self,
+            Command.MallocScribbleEnabled.self,
+            Command.MallocGuardEdgesEnabled.self,
+            Command.GuardMallocEnabled.self,
+            Command.NsZombieEnabled.self,
+            Command.MallocStackLoggingOptions.self
         ]
       )
     }
