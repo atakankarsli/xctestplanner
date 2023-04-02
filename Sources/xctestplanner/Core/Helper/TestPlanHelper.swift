@@ -102,6 +102,19 @@ class TestPlanHelper {
         testPlan.defaultOptions.environmentVariableEntries?.append(EnvironmentVariableEntry(key: key, value: value))
     }
     
+    static func setEnvironmentVariables(testPlan: inout TestPlanModel, keys: [String], values: [String]) {
+        if testPlan.defaultOptions.environmentVariableEntries == nil {
+            testPlan.defaultOptions.environmentVariableEntries = []
+        }
+        
+        for key in keys {
+            guard let index = keys.firstIndex(of: key) else { return }
+            let value = values[index]
+            Logger.log("Setting environment variables with key '\(key)' and value '\(value)' in test plan", level: .info)
+            testPlan.defaultOptions.environmentVariableEntries?.append(EnvironmentVariableEntry(key: key, value: value))
+        }
+    }
+    
     static func setArgument(testPlan: inout TestPlanModel, key: String, disabled: Bool) {
         if testPlan.defaultOptions.commandLineArgumentEntries == nil {
             testPlan.defaultOptions.commandLineArgumentEntries = []

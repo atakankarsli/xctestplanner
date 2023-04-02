@@ -23,6 +23,7 @@ extension Command {
             Command.Language.self,
             Command.Region.self,
             Command.EnvironmentVariable.self,
+            Command.EnvironmentVariables.self,
             Command.Arg.self,
             Command.Remove.self,
             Command.DefaultTestPlan.self,
