@@ -33,6 +33,7 @@ extension Command {
             Command.AreLocalizationScreenshotsEnabled.self,
             Command.UserAttachmentLifetime.self,
             Command.DiagnosticCollectionPolicy.self,
+            Command.TestRepetitionMode.self,
             Command.TestExecutionOrdering.self,
             Command.TestTimeoutsEnabled.self,
             Command.DefaultTestExecutionTimeAllowance.self,

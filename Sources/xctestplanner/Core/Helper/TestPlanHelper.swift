@@ -236,6 +236,11 @@ class TestPlanHelper {
         Logger.log("Setting malloc stack logging options: '\(loggingType)'", level: .info)
     }
     
+    static func setTestRepetitionMode(testPlan: inout TestPlanModel, mode: String) {
+        testPlan.defaultOptions.testRepetitionMode = mode
+        Logger.log("Setting test repetition mode: '\(mode)'", level: .info)
+    }
+    
     static func checkForTestTargets(testPlan: TestPlanModel) {
         if testPlan.testTargets.isEmpty {
             Logger.log("Error: Test plan does not have any test targets. Add a test target before attempting to update the selected or skipped tests.", level: .error)
