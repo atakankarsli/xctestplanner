@@ -94,12 +94,12 @@ class TestPlanHelper {
         testPlan.defaultOptions.region = region.uppercased()
     }
     
-    static func setEnvironmentVariable(testPlan: inout TestPlanModel, key: String, value: String) {
+    static func setEnvironmentVariable(testPlan: inout TestPlanModel, key: String, value: String, enabled: Bool? = true) {
         Logger.log("Setting environment variable with key '\(key)' and value '\(value)' in test plan", level: .info)
         if testPlan.defaultOptions.environmentVariableEntries == nil {
             testPlan.defaultOptions.environmentVariableEntries = []
         }
-        testPlan.defaultOptions.environmentVariableEntries?.append(EnvironmentVariableEntry(key: key, value: value))
+        testPlan.defaultOptions.environmentVariableEntries?.append(EnvironmentVariableEntry(key: key, value: value, enabled: enabled))
     }
     
     static func setArgument(testPlan: inout TestPlanModel, key: String, disabled: Bool) {

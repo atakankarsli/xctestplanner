@@ -45,6 +45,7 @@ struct CommandLineArgumentEntry: Codable {
 // MARK: - EnvironmentVariableEntry
 struct EnvironmentVariableEntry: Codable {
     var key, value: String
+    let enabled: Bool?
 }
 
 // MARK: - LocationScenario
