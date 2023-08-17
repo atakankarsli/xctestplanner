@@ -16,6 +16,7 @@ struct Configuration: Codable {
 
 // MARK: - Options
 struct Options: Codable {
+    let environmentVariableEntries: [EnvironmentVariableEntry]
     var targetForVariableExpansion: Target?
 }
 
