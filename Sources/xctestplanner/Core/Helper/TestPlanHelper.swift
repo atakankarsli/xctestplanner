@@ -121,6 +121,18 @@ class TestPlanHelper {
             exit(1)
         }
     }
+    
+    static func updateTestPlanTargets(testPlan: inout TestPlanModel, affectedTargets: Set<String>) {
+        checkForTestTargets(testPlan: testPlan)
+        testPlan.testTargets = testPlan.testTargets.map { testTarget in
+            let isEnabled = affectedTargets.contains(testTarget.target.name)
+            return TestTarget(parallelizable: testTarget.parallelizable,
+                              skippedTests: testTarget.skippedTests,
+                              selectedTests: testTarget.selectedTests,
+                              target: testTarget.target,
+                              enabled: isEnabled)
+        }
+    }
 }
 
 enum TestPlanValue: String {

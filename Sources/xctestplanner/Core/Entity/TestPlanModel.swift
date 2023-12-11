@@ -35,6 +35,8 @@ struct DefaultOptions: Codable {
     var testTimeoutsEnabled: Bool?
     var testRepetitionMode: String?
     var maximumTestRepetitions: Int?
+    var defaultTestExecutionTimeAllowance: Int?
+    var maximumTestExecutionTimeAllowance: Int?
 }
 
 // MARK: - CommandLineArgumentEntry
@@ -60,4 +62,5 @@ struct TestTarget: Codable {
     var skippedTests: [String]?
     var selectedTests: [String]?
     var target: Target
+    var enabled: Bool?
 }
