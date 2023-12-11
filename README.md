@@ -156,6 +156,11 @@ xctestplanner environment -f filePath --key MY_VAR --value 123
 xctestplanner remove -f filePath TestClass1\/testName1 TestClass2\/testName2
 ```
 
+### Select Target (Selective Testing)
+```
+xctestplanner select-target -f filePath XModuleTests YModuleTests
+```
+
 ## Contribution
 
 Please create an issue whenever you find an issue or think a feature could be a good addition to XCTestPlanner. 
