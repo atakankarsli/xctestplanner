@@ -9,18 +9,27 @@ And also, It's not possible to selectively run or skip specific test classes wit
 
 ## Selective Testing
 
-Selective testing is one of the key features of XCTestPlanner. It eliminates the need for complex solutions like caching or hashing. If your unit tests are truly unit tests, there’s no need to consider dependent modules. XCTestPlanner uses git diff to identify the affected modules and enables only their targets, skipping the rest. 
+Selective testing is a key feature of XCTestPlanner, especially for projects with lots of tests. By using this command only the affected modules will be tested, significantly improving efficiency by skipping unchanged modules. This can reduce your test execution times by up to 80%.
 
-By default, it compares diffs against origin/develop, but you can pass a different targetBranch in your CI pipelines to customize the comparison.
-After running this command, you can execute your tests and see the magic happen. The affected modules will be tested, significantly optimizing your testing process by skipping unchanged modules.
+At first, In addition to affected module's tests, this tool generated graphs and included tests of dependent modules. Then we realized that in our project with 30,000 tests and over 200 modules, true unit tests (all dependencies mocked) don’t need to worry about dependent modules. This means no more dealing with complex dependency graphs and cache operations.
+
+XCTestPlanner uses git diff to spot the affected modules, enabling only their targets and skipping the rest. By default, it checks against origin/develop, but you can customize it by passing a different targetBranch in your CI pipelines. Just run this command, execute your tests, and watch the magic happen!
+
 ```
 xctestplanner selective-testing -f {testPlanPath} -p {projectPath} -t {targetBranch}
 ```
 
-## Features
-XCTestPlanner simplifies to edit test plans by providing command-line interface for adding or removing tests, setting language and region options, and adjusting the rerun numbers.
+### Requirements: 
+Your test target names should be in the format ModuleNameTests.
+Ensure these test targets are added to your test plan.
 
-- Handle your test plans from command line interface instead of Xcode.
+Unlike other selective testing approaches, XCTestPlanner doesn’t need caching or hashing. This feature works seamlessly with tools like Bazel or Tuist.
+
+
+## Features
+XCTestPlanner simplifies editing test plans by providing a command-line interface for adding or removing tests, setting language and region options, and adjusting the rerun numbers.
+
+- Handle your test plans from the command line interface instead of Xcode.
 - Simplify your CI setups by creating a single test plan that can be customized for various configurations.
 - Easily adjust the number of test repetitions for different environments.
 - Control the Localizations by passing parameters.
