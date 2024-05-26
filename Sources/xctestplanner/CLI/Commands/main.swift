@@ -26,7 +26,8 @@ extension Command {
             Command.Arg.self,
             Command.Remove.self,
             Command.DefaultTestPlan.self,
-            Command.SelectTarget.self
+            Command.SelectTarget.self,
+            Command.SelectiveTesting.self
         ]
       )
     }

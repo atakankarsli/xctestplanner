@@ -7,6 +7,15 @@ However, manually editing large number of test plans can be time-consuming and t
 
 And also, It's not possible to selectively run or skip specific test classes with a test plan.
 
+## Selective Testing
+
+Selective testing is one of the key features of XCTestPlanner. It eliminates the need for complex solutions like caching or hashing. If your unit tests are truly unit tests, there’s no need to consider dependent modules. XCTestPlanner uses git diff to identify the affected modules and enables only their targets, skipping the rest. 
+
+By default, it compares diffs against origin/develop, but you can pass a different targetBranch in your CI pipelines to customize the comparison.
+After running this command, you can execute your tests and see the magic happen. The affected modules will be tested, significantly optimizing your testing process by skipping unchanged modules.
+```
+xctestplanner selective-testing -f {testPlanPath} -p {projectPath} -t {targetBranch}
+```
 
 ## Features
 XCTestPlanner simplifies to edit test plans by providing command-line interface for adding or removing tests, setting language and region options, and adjusting the rerun numbers.

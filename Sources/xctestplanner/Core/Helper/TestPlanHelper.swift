@@ -1,6 +1,6 @@
 //
 //  TestPlanHelper.swift
-//  
+//
 //
 //  Created by Atakan Karslı on 20/12/2022.
 //
@@ -133,8 +133,93 @@ class TestPlanHelper {
                               enabled: isEnabled)
         }
     }
+    
+    static func runGitDiffAndGetSelectedTargets() -> String {
+        printWithColor("Code diff analysis in progress. This may take a moment (up to 30 seconds)...", color: .yellow)
+        let output = shell(launchPath: "/bin/bash", arguments: ["-c", "git diff --name-only HEAD~1"])
+        
+        let testFiles = output
+            .split(separator: "\n")
+            .filter { $0.contains("Tests/") }
+            .map { String($0) }
+        
+        guard !testFiles.isEmpty else {
+            printWithColor("No changes detected affecting tests. No tests have been selected", color: .red)
+            return ""
+        }
+        
+        let selectedTests = testFiles.joined(separator: " ")
+        printWithColor("Selected test files: \(selectedTests)", color: .green)
+        return selectedTests
+    }
+    
+    static func selectTests(withTargets targets: String, testPlanPath: String) {
+        printWithColor("Selecting tests with xctestplanner...", color: .yellow)
+        
+        let targetsArray = targets.components(separatedBy: " ")
+        let quotedTargets = targetsArray.map { "'\($0)'" }.joined(separator: " ")
+        
+        let command = "xctestplanner select-target \(quotedTargets) -f \(testPlanPath)"
+        printWithColor("Executing command: \(command)", color: .yellow)
+        
+        let result = shell(launchPath: "/bin/bash", arguments: ["-c", command])
+        
+        printWithColor("\(result)", color: .green)
+    }
+    
+    static func shell(launchPath: String, arguments: [String]) -> String {
+        let process = Process()
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+        
+        process.executableURL = URL(fileURLWithPath: launchPath)
+        process.arguments = arguments
+        process.standardOutput = outputPipe
+        process.standardError = errorPipe
+        
+        do {
+            try process.run()
+        } catch {
+            print("Error executing process: \(error)")
+            return ""
+        }
+        
+        let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+        let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
+        
+        if let output = String(data: outputData, encoding: .utf8), !output.isEmpty {
+            return output
+        } else if let error = String(data: errorData, encoding: .utf8), !error.isEmpty {
+            return error
+        }
+        
+        process.waitUntilExit()
+        return ""
+    }
+    
+    static func getFirstTestTarget(filePath: String) throws -> String {
+        let testPlan = try readTestPlan(filePath: filePath)
+        guard let firstTarget = testPlan.testTargets.first else {
+            printWithColor("No test targets found in the test plan.", color: .red)
+            throw NSError(domain: "TestPlanHelper", code: 1, userInfo: [NSLocalizedDescriptionKey: "No test targets found in the test plan."])
+        }
+        return firstTarget.target.name
+    }
+    
 }
 
 enum TestPlanValue: String {
     case retryOnFailure
+}
+
+
+enum Colors: String {
+    case red = "\u{001B}[0;31m"
+    case green = "\u{001B}[0;34m"
+    case yellow = "\u{001B}[0;33m"
+    case `default` = "\u{001B}[0;0m"
+}
+
+func printWithColor(_ text: String, color: Colors = .default) {
+    print(color.rawValue + text + Colors.default.rawValue)
 }
