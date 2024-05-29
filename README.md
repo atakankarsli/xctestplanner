@@ -15,6 +15,7 @@ XCTestPlanner simplifies editing test plans by providing a command-line interfac
 - Easily adjust the number of test repetitions for different environments.
 - Control the Localizations by passing parameters.
 - Conveniently set environment variables/ arguments for your CI pipelines.
+- Selects only the affected modules tests
 
 
 ## Installation
