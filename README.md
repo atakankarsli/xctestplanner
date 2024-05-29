@@ -7,25 +7,6 @@ However, manually editing large number of test plans can be time-consuming and t
 
 And also, It's not possible to selectively run or skip specific test classes with a test plan.
 
-## Selective Testing
-
-Selective testing is a key feature of XCTestPlanner, especially for projects with lots of tests. By using this command only the affected modules will be tested, significantly improving efficiency by skipping unchanged modules. This can reduce your test execution times by up to 80%.
-
-At first, In addition to affected module's tests, this tool generated graphs and included tests of dependent modules. Then we realized that in our project with 30,000 tests and over 200 modules, true unit tests (all dependencies mocked) don’t need to worry about dependent modules. This means no more dealing with complex dependency graphs and cache operations.
-
-XCTestPlanner uses git diff to spot the affected modules, enabling only their targets and skipping the rest. By default, it checks against origin/develop, but you can customize it by passing a different targetBranch in your CI pipelines. Just run this command, execute your tests, and watch the magic happen!
-
-```
-xctestplanner selective-testing -f {testPlanPath} -p {projectPath} -t {targetBranch}
-```
-
-### Requirements: 
-Your test target names should be in the format ModuleNameTests.
-Ensure these test targets are added to your test plan.
-
-Unlike other selective testing approaches, XCTestPlanner doesn’t need caching or hashing. This feature works seamlessly with tools like Bazel or Tuist.
-
-
 ## Features
 XCTestPlanner simplifies editing test plans by providing a command-line interface for adding or removing tests, setting language and region options, and adjusting the rerun numbers.
 
@@ -174,10 +155,25 @@ xctestplanner environment -f filePath --key MY_VAR --value 123
 xctestplanner remove -f filePath TestClass1\/testName1 TestClass2\/testName2
 ```
 
-### Select Target (Selective Testing)
+### Select Target
 ```
 xctestplanner select-target -f filePath XModuleTests YModuleTests
 ```
+
+## Selective Testing
+
+Selective testing is a new key feature of xctestplanner, especially for projects with lots of tests. By using this command only the affected modules tests will be selected, significantly improving efficiency by skipping unchanged modules. This can reduce your test execution times by up to 80%.
+
+xctestplanner uses git diff to spot the affected modules, enabling only their targets and skipping the rest. By default, it checks against origin/develop, but you can customize it by passing a different target branch in your CI pipelines. Just run this command, then execute your tests, and watch the magic happen!
+
+```
+xctestplanner selective-testing -f {testPlanPath} -p {projectPath} -t {targetBranch}
+```
+
+
+### Requirements: 
+Your test target names should be in the format ModuleNameTests.
+Ensure all test targets are added to your test plan.
 
 ## Contribution
 
