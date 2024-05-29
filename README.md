@@ -22,6 +22,10 @@ Selective testing is a new feature of xctestplanner, especially for projects wit
 
 xctestplanner uses git diff to spot the affected modules, enabling only their targets and skipping the rest. By default, it checks against origin/develop, but you can customize it by passing a different target branch in your CI pipelines. Just run this command, then execute your tests, and watch the magic happen!
 
+### Requirements: 
+- Your test target names should be in the format ModuleNameTests.
+- Ensure all test targets are added to your test plan.
+
 ```
 xctestplanner selective-testing -f {testPlanPath} -p {projectPath} -t {targetBranch}
 ```
@@ -168,11 +172,6 @@ xctestplanner remove -f filePath TestClass1\/testName1 TestClass2\/testName2
 ```
 xctestplanner select-target -f filePath XModuleTests YModuleTests
 ```
-
-
-### Requirements: 
-Your test target names should be in the format ModuleNameTests.
-Ensure all test targets are added to your test plan.
 
 ## Contribution
 
