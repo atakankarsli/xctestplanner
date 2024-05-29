@@ -18,7 +18,7 @@ XCTestPlanner simplifies editing test plans by providing a command-line interfac
 
 ## Selective Testing
 
-Selective testing is a new key feature of xctestplanner, especially for projects with lots of tests. By using this command only the affected modules tests will be selected, significantly improving efficiency by skipping unchanged modules. This can reduce your test execution times by up to 80%.
+Selective testing is a new feature of xctestplanner, especially for projects with lots of tests. By using this command only the affected modules tests will be selected, significantly improving efficiency by skipping unchanged modules' tests. This can reduce your test execution times by up to 80%.
 
 xctestplanner uses git diff to spot the affected modules, enabling only their targets and skipping the rest. By default, it checks against origin/develop, but you can customize it by passing a different target branch in your CI pipelines. Just run this command, then execute your tests, and watch the magic happen!
 
