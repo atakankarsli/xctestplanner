@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - Welcome
+// MARK: - TestPlanModel
 struct TestPlanModel: Codable {
     var configurations: [Configuration]
     var defaultOptions: DefaultOptions
@@ -16,8 +16,9 @@ struct Configuration: Codable {
 
 // MARK: - Options
 struct Options: Codable {
+    let language: String?
+    let targetForVariableExpansion: Target?
     let environmentVariableEntries: [EnvironmentVariableEntry]?
-    var targetForVariableExpansion: Target?
 }
 
 // MARK: - Target
@@ -27,12 +28,17 @@ struct Target: Codable {
 
 // MARK: - DefaultOptions
 struct DefaultOptions: Codable {
-    var commandLineArgumentEntries: [CommandLineArgumentEntry]?
+    var areLocalizationScreenshotsEnabled: Bool?
+    var codeCoverage: Bool?
+    var diagnosticCollectionPolicy: String?
     var environmentVariableEntries: [EnvironmentVariableEntry]?
     var language: String?
-    var region: String?
     var locationScenario: LocationScenario?
+    var preferredScreenCaptureFormat: String?
+    var region: String?
     var testTimeoutsEnabled: Bool?
+    var uiTestingScreenshotsLifetime: String?
+    var commandLineArgumentEntries: [CommandLineArgumentEntry]?
     var testRepetitionMode: String?
     var maximumTestRepetitions: Int?
     var defaultTestExecutionTimeAllowance: Int?

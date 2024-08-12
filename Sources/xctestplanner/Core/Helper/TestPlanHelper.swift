@@ -206,6 +206,60 @@ class TestPlanHelper {
         return firstTarget.target.name
     }
     
+    static func configureDefaultOptions(
+        testPlan: inout TestPlanModel,
+        enableLocalizationScreenshots: Bool,
+        enableCodeCoverage: Bool?,
+        diagnosticPolicy: String?,
+        enableTimeouts: Bool,
+        screenshotLifetime: String?,
+        screenCaptureFormat: String?
+    ) {
+        Logger.log("Configuring test plan parameters...", level: .info)
+        
+        // Handle Localization Screenshots
+        if enableLocalizationScreenshots {
+            testPlan.defaultOptions.areLocalizationScreenshotsEnabled = true
+        } else {
+            testPlan.defaultOptions.areLocalizationScreenshotsEnabled = nil
+        }
+        
+        // Handle Code Coverage
+        if let codeCoverage = enableCodeCoverage {
+            testPlan.defaultOptions.codeCoverage = codeCoverage
+        } else {
+            testPlan.defaultOptions.codeCoverage = nil // Means on by default
+        }
+        
+        // Handle Test Timeouts
+        if enableTimeouts {
+            testPlan.defaultOptions.testTimeoutsEnabled = true
+        } else {
+            testPlan.defaultOptions.testTimeoutsEnabled = nil
+        }
+        
+        // Handle Diagnostic Collection Policy
+        if let diagnosticPolicy = diagnosticPolicy {
+            testPlan.defaultOptions.diagnosticCollectionPolicy = diagnosticPolicy
+        } else {
+            testPlan.defaultOptions.diagnosticCollectionPolicy = nil // Means "only with xcodebuild"
+        }
+        
+        // Handle Screenshot Lifetime
+        if let screenshotLifetime = screenshotLifetime, screenshotLifetime == "keepAlways" || screenshotLifetime == "deleteAfterSuccess" {
+            testPlan.defaultOptions.uiTestingScreenshotsLifetime = screenshotLifetime
+        } else {
+            testPlan.defaultOptions.uiTestingScreenshotsLifetime = nil // Means off
+        }
+        
+        // Handle Screen Capture Format
+        if let screenCaptureFormat = screenCaptureFormat, screenCaptureFormat == "screenshot" {
+            testPlan.defaultOptions.preferredScreenCaptureFormat = "screenshot"
+        } else {
+            testPlan.defaultOptions.preferredScreenCaptureFormat = nil // Means video
+        }
+    }
+    
 }
 
 enum TestPlanValue: String {
