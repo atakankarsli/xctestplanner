@@ -173,6 +173,13 @@ xctestplanner remove -f filePath TestClass1\/testName1 TestClass2\/testName2
 xctestplanner select-target -f filePath XModuleTests YModuleTests
 ```
 
+### Default Options
+This command  allows to configure various default options.
+
+```
+xctestplanner defaultOptions -f "/path/to/your/testplan.xctestplan" --enable-localization-screenshots true --enable-code-coverage false --diagnostic-policy "Never" --enable-timeouts true --screenshot-lifetime "keepAlways" --screen-capture-format "screenshot"
+```
+
 ## Contribution
 
 Please create an issue whenever you find an issue or think a feature could be a good addition to XCTestPlanner. 
