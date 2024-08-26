@@ -16,9 +16,22 @@ struct Configuration: Codable {
 
 // MARK: - Options
 struct Options: Codable {
-    let language: String?
-    let targetForVariableExpansion: Target?
-    let environmentVariableEntries: [EnvironmentVariableEntry]?
+    var areLocalizationScreenshotsEnabled: Bool?
+    var codeCoverage: Bool?
+    var diagnosticCollectionPolicy: String?
+    var environmentVariableEntries: [EnvironmentVariableEntry]?
+    var language: String?
+    var locationScenario: LocationScenario?
+    var preferredScreenCaptureFormat: String?
+    var region: String?
+    var testTimeoutsEnabled: Bool?
+    var uiTestingScreenshotsLifetime: String?
+    var commandLineArgumentEntries: [CommandLineArgumentEntry]?
+    var testRepetitionMode: String?
+    var maximumTestRepetitions: Int?
+    var defaultTestExecutionTimeAllowance: Int?
+    var maximumTestExecutionTimeAllowance: Int?
+    var targetForVariableExpansion: Target?
 }
 
 // MARK: - Target
@@ -43,6 +56,7 @@ struct DefaultOptions: Codable {
     var maximumTestRepetitions: Int?
     var defaultTestExecutionTimeAllowance: Int?
     var maximumTestExecutionTimeAllowance: Int?
+    var targetForVariableExpansion: Target?
 }
 
 // MARK: - CommandLineArgumentEntry

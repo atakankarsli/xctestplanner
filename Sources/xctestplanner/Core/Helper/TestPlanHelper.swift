@@ -96,10 +96,21 @@ class TestPlanHelper {
     
     static func setEnvironmentVariable(testPlan: inout TestPlanModel, key: String, value: String, enabled: Bool? = true) {
         Logger.log("Setting environment variable with key '\(key)' and value '\(value)' in test plan", level: .info)
+        
+        // Add environment variable to defaultOptions
         if testPlan.defaultOptions.environmentVariableEntries == nil {
             testPlan.defaultOptions.environmentVariableEntries = []
         }
         testPlan.defaultOptions.environmentVariableEntries?.append(EnvironmentVariableEntry(key: key, value: value, enabled: enabled))
+        
+        for index in testPlan.configurations.indices {
+            var configuration = testPlan.configurations[index]
+            if configuration.options.environmentVariableEntries == nil {
+                configuration.options.environmentVariableEntries = []
+            }
+            configuration.options.environmentVariableEntries?.append(EnvironmentVariableEntry(key: key, value: value, enabled: enabled))
+            testPlan.configurations[index] = configuration
+        }
     }
     
     static func setArgument(testPlan: inout TestPlanModel, key: String, disabled: Bool) {
@@ -215,51 +226,87 @@ class TestPlanHelper {
         screenshotLifetime: String?,
         screenCaptureFormat: String?
     ) {
-        Logger.log("Configuring test plan parameters...", level: .info)
+        Logger.log("Configuring default options and updating all configurations in the test plan...", level: .info)
         
-        // Handle Localization Screenshots
+        // Configure default options directly
         if enableLocalizationScreenshots {
             testPlan.defaultOptions.areLocalizationScreenshotsEnabled = true
         } else {
             testPlan.defaultOptions.areLocalizationScreenshotsEnabled = nil
         }
         
-        // Handle Code Coverage
         if let codeCoverage = enableCodeCoverage {
             testPlan.defaultOptions.codeCoverage = codeCoverage
         } else {
-            testPlan.defaultOptions.codeCoverage = nil // Means on by default
+            testPlan.defaultOptions.codeCoverage = nil
         }
         
-        // Handle Test Timeouts
+        if let diagnosticPolicy = diagnosticPolicy {
+            testPlan.defaultOptions.diagnosticCollectionPolicy = diagnosticPolicy
+        } else {
+            testPlan.defaultOptions.diagnosticCollectionPolicy = nil
+        }
+        
         if enableTimeouts {
             testPlan.defaultOptions.testTimeoutsEnabled = true
         } else {
             testPlan.defaultOptions.testTimeoutsEnabled = nil
         }
         
-        // Handle Diagnostic Collection Policy
-        if let diagnosticPolicy = diagnosticPolicy {
-            testPlan.defaultOptions.diagnosticCollectionPolicy = diagnosticPolicy
-        } else {
-            testPlan.defaultOptions.diagnosticCollectionPolicy = nil // Means "only with xcodebuild"
-        }
-        
-        // Handle Screenshot Lifetime
         if let screenshotLifetime = screenshotLifetime, screenshotLifetime == "keepAlways" || screenshotLifetime == "deleteAfterSuccess" {
             testPlan.defaultOptions.uiTestingScreenshotsLifetime = screenshotLifetime
         } else {
-            testPlan.defaultOptions.uiTestingScreenshotsLifetime = nil // Means off
+            testPlan.defaultOptions.uiTestingScreenshotsLifetime = nil
         }
         
-        // Handle Screen Capture Format
         if let screenCaptureFormat = screenCaptureFormat, screenCaptureFormat == "screenshot" {
             testPlan.defaultOptions.preferredScreenCaptureFormat = "screenshot"
         } else {
-            testPlan.defaultOptions.preferredScreenCaptureFormat = nil // Means video
+            testPlan.defaultOptions.preferredScreenCaptureFormat = nil
+        }
+        
+        // Update each configuration's options
+        for index in testPlan.configurations.indices {
+            var configurationOptions = testPlan.configurations[index].options
+            
+            if enableLocalizationScreenshots {
+                configurationOptions.areLocalizationScreenshotsEnabled = true
+            } else {
+                configurationOptions.areLocalizationScreenshotsEnabled = nil
+            }
+            
+            if let codeCoverage = enableCodeCoverage {
+                configurationOptions.codeCoverage = codeCoverage
+            } else {
+                configurationOptions.codeCoverage = nil
+            }
+            
+            if let diagnosticPolicy = diagnosticPolicy {
+                configurationOptions.diagnosticCollectionPolicy = diagnosticPolicy
+            } else {
+                configurationOptions.diagnosticCollectionPolicy = nil
+            }
+            
+            if enableTimeouts {
+                configurationOptions.testTimeoutsEnabled = true
+            } else {
+                configurationOptions.testTimeoutsEnabled = nil
+            }
+            
+            if let screenshotLifetime = screenshotLifetime, screenshotLifetime == "keepAlways" || screenshotLifetime == "deleteAfterSuccess" {
+                configurationOptions.uiTestingScreenshotsLifetime = screenshotLifetime
+            } else {
+                configurationOptions.uiTestingScreenshotsLifetime = nil
+            }
+            
+            if let screenCaptureFormat = screenCaptureFormat, screenCaptureFormat == "screenshot" {
+                configurationOptions.preferredScreenCaptureFormat = "screenshot"
+            } else {
+                configurationOptions.preferredScreenCaptureFormat = nil
+            }
+            testPlan.configurations[index].options = configurationOptions
         }
     }
-    
 }
 
 enum TestPlanValue: String {
